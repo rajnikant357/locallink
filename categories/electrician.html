@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Electricians - LocalLink</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .category-header {
+      background-color: white;
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.5rem 0;
+    }
+    
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+    .back-link:hover {
+      text-decoration: underline;
+    }
+    
+    .back-link i {
+      margin-right: 0.25rem;
+      font-size: 0.75rem;
+    }
+    
+    .category-header-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .category-title {
+      display: flex;
+      align-items: center;
+    }
+    
+    .category-icon-large {
+      width: 3rem;
+      height: 3rem;
+      background-color: #dbeafe;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 0.75rem;
+      color: var(--primary-color);
+      font-size: 1.5rem;
+    }
+    
+    .category-header h1 {
+      font-size: 1.875rem;
+      font-weight: 700;
+    }
+    
+    .category-count {
+      color: var(--text-light);
+      margin-top: 0.25rem;
+    }
+    
+    .category-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+    
+    .sort-select {
+      width: 11.25rem;
+      height: 2.5rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 0 0.75rem;
+      background-color: white;
+      font-family: inherit;
+    }
+    
+    .filter-button {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      height: 2.5rem;
+      padding: 0 0.75rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      background-color: white;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    
+    .filter-button:hover {
+      background-color: var(--secondary-color);
+    }
+    
+    .category-content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 2rem 0;
+    }
+    
+    .filters-sidebar {
+      display: none;
+      background-color: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.5rem;
+    }
+    
+    .filter-section {
+      margin-bottom: 1.5rem;
+    }
+    
+    .filter-section h3 {
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+    
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+    }
+    
+    .checkbox-item input {
+      margin-right: 0.5rem;
+    }
+    
+    .slider-container {
+      margin-top: 0.5rem;
+    }
+    
+    .slider {
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+    
+    .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.875rem;
+      color: var(--text-light);
+    }
+    
+    .price-inputs {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+    
+    .price-input-wrapper {
+      position: relative;
+      flex: 1;
+    }
+    
+    .price-input-wrapper span {
+      position: absolute;
+      left: 0.75rem;
+      top: 0.625rem;
+      color: var(--text-light);
+    }
+    
+    .price-input-wrapper input {
+      width: 100%;
+      height: 2.5rem;
+      padding-left: 1.75rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-color);
+    }
+    
+    .filter-buttons {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+    
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    
+    .pagination-button {
+      height: 2.25rem;
+      min-width: 2.25rem;
+      padding: 0 0.5rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      background-color: white;
+      margin: 0 0.25rem;
+      cursor: pointer;
+    }
+    
+    .pagination-button.active {
+      background-color: #dbeafe;
+    }
+    
+    .pagination-button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    @media (min-width: 768px) {
+      .category-header-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .category-content {
+        grid-template-columns: 16rem 1fr;
+      }
+      
+      .filters-sidebar {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header (Same as index.html) -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <!-- Logo -->
+        <a href="../index.html" class="logo">
+          <span>LocalLink</span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav">
+          <a href="../categories.html" class="nav-link">Categories</a>
+          <a href="../providers.html" class="nav-link">Providers</a>
+          <a href="../how-it-works.html" class="nav-link">How It Works</a>
+          <a href="../about.html" class="nav-link">About</a>
+        </nav>
+
+        <!-- Desktop Actions -->
+        <div class="desktop-actions">
+          <!-- Language Selector -->
+          <div class="dropdown">
+            <button class="icon-button" id="language-button">
+              <i class="fas fa-globe"></i>
+            </button>
+            <div class="dropdown-content" id="language-dropdown">
+              <a href="#">English</a>
+              <a href="#">हिन्दी</a>
+              <a href="#">भोजपुरी</a>
+            </div>
+          </div>
+
+          <!-- Notifications -->
+          <button class="icon-button">
+            <i class="fas fa-bell"></i>
+          </button>
+
+          <!-- User Menu -->
+          <div class="dropdown">
+            <button class="icon-button" id="user-button">
+              <i class="fas fa-user"></i>
+            </button>
+            <div class="dropdown-content" id="user-dropdown">
+              <a href="#">Profile</a>
+              <a href="#">My Bookings</a>
+              <a href="#">Settings</a>
+              <a href="#">Sign Out</a>
+            </div>
+          </div>
+
+          <button class="btn btn-small">Sign In</button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="mobile-menu-button">
+          <button id="mobile-menu-toggle">
+            <i class="fas fa-bars" id="menu-icon"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="container">
+        <a href="../categories.html" class="mobile-menu-item">Categories</a>
+        <a href="../providers.html" class="mobile-menu-item">Providers</a>
+        <a href="../how-it-works.html" class="mobile-menu-item">How It Works</a>
+        <a href="../about.html" class="mobile-menu-item">About</a>
+        <div class="mobile-menu-footer">
+          <button class="btn btn-full">Sign In</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Category Header -->
+    <div class="category-header">
+      <div class="container">
+        <a href="../categories.html" class="back-link">
+          <i class="fas fa-chevron-left"></i> Back to Categories
+        </a>
+        
+        <div class="category-header-content">
+          <div>
+            <div class="category-title">
+              <div class="category-icon-large">
+                <i class="fas fa-bolt"></i>
+              </div>
+              <h1>Electrician</h1>
+            </div>
+            <p class="category-count">8 service providers available in your area</p>
+          </div>
+          
+          <div class="category-actions">
+            <select class="sort-select">
+              <option value="nearest">Nearest First</option>
+              <option value="rating">Highest Rated</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+            </select>
+            
+            <button class="filter-button">
+              <i class="fas fa-filter"></i> Filters
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Category Content -->
+    <div class="container">
+      <div class="category-content">
+        <!-- Filters Sidebar -->
+        <div class="filters-sidebar">
+          <h2 class="font-semibold text-lg mb-4">Filters</h2>
+          
+          <!-- Availability Filter -->
+          <div class="filter-section">
+            <h3>Availability</h3>
+            <div class="checkbox-group">
+              <label class="checkbox-item">
+                <input type="checkbox" id="available-now"> Available Now
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" id="available-today"> Available Today
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" id="available-week"> Available This Week
+              </label>
+            </div>
+          </div>
+          
+          <!-- Distance Filter -->
+          <div class="filter-section">
+            <h3>Distance</h3>
+            <div class="slider-container">
+              <input type="range" min="0" max="20" value="5" class="slider" id="distance-slider">
+              <div class="slider-labels">
+                <span>0 km</span>
+                <span>5 km</span>
+                <span>20 km</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Rating Filter -->
+          <div class="filter-section">
+            <h3>Minimum Rating</h3>
+            <div class="checkbox-group">
+              <label class="checkbox-item">
+                <input type="checkbox" id="rating-4"> 4+ <i class="fas fa-star" style="color: #f59e0b; font-size: 0.75rem; margin-left: 0.25rem;"></i>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" id="rating-3"> 3+ <i class="fas fa-star" style="color: #f59e0b; font-size: 0.75rem; margin-left: 0.25rem;"></i>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" id="rating-2"> 2+ <i class="fas fa-star" style="color: #f59e0b; font-size: 0.75rem; margin-left: 0.25rem;"></i>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" id="rating-1"> 1+ <i class="fas fa-star" style="color: #f59e0b; font-size: 0.75rem; margin-left: 0.25rem;"></i>
+              </label>
+            </div>
+          </div>
+          
+          <!-- Price Range Filter -->
+          <div class="filter-section">
+            <h3>Price Range (per hour)</h3>
+            <div class="price-inputs">
+              <div class="price-input-wrapper">
+                <span>₹</span>
+                <input type="number" placeholder="Min" min="0">
+              </div>
+              <span>-</span>
+              <div class="price-input-wrapper">
+                <span>₹</span>
+                <input type="number" placeholder="Max" min="0">
+              </div>
+            </div>
+          </div>
+          
+          <!-- Experience Filter -->
+          <div class="filter-section">
+            <h3>Experience</h3>
+            <div class="checkbox-group">
+              <label class="checkbox-item">
+                <input type="checkbox" id="exp-1"> Less than 1 year
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" id="exp-1-3"> 1-3 years
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" id="exp-3-5"> 3-5 years
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" id="exp-5+"> 5+ years
+              </label>
+            </div>
+          </div>
+          
+          <div class="filter-buttons">
+            <button class="btn" style="flex: 1;">Apply Filters</button>
+            <button class="btn btn-secondary" style="flex: 1;">Reset</button>
+          </div>
+        </div>
+        
+        <!-- Provider Listings -->
+        <div>
+          <div class="providers-grid">
+            <!-- Provider Card 1 -->
+            <div class="provider-card">
+              <div class="provider-info">
+                <div class="provider-image-container">
+                  <img src="../images/provider-1.jpg" alt="Rajesh Kumar" class="provider-image">
+                  <div class="status-indicator available">✓</div>
+                </div>
+                <div class="provider-details">
+                  <div class="provider-header">
+                    <div>
+                      <h3>Rajesh Kumar</h3>
+                      <p class="provider-category">Electrician</p>
+                    </div>
+                    <div class="rating">
+                      <i class="fas fa-star"></i>
+                      <span>4.8</span>
+                    </div>
+                  </div>
+                  <div class="provider-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Sikandarpur, 2.3 km</span>
+                  </div>
+                  <div class="provider-rate">
+                    <i class="fas fa-clock"></i>
+                    <span>₹500/hour</span>
+                  </div>
+                  <div class="provider-tags">
+                    <span class="tag">Wiring</span>
+                    <span class="tag">Repairs</span>
+                    <span class="tag">Installation</span>
+                  </div>
+                </div>
+              </div>
+              <div class="provider-actions">
+                <button class="action-button">View Profile</button>
+                <div class="divider"></div>
+                <button class="action-button">Contact</button>
+                <div class="divider"></div>
+                <button class="action-button book-now">Book Now</button>
+              </div>
+            </div>
+            
+            <!-- Provider Card 2 -->
+            <div class="provider-card">
+              <div class="provider-info">
+                <div class="provider-image-container">
+                  <img src="../images/provider-7.jpg" alt="Vikram Patel" class="provider-image">
+                  <div class="status-indicator available">✓</div>
+                </div>
+                <div class="provider-details">
+                  <div class="provider-header">
+                    <div>
+                      <h3>Vikram Patel</h3>
+                      <p class="provider-category">Electrician</p>
+                    </div>
+                    <div class="rating">
+                      <i class="fas fa-star"></i>
+                      <span>4.7</span>
+                    </div>
+                  </div>
+                  <div class="provider-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Sikandarpur, 1.5 km</span>
+                  </div>
+                  <div class="provider-rate">
+                    <i class="fas fa-clock"></i>
+                    <span>₹550/hour</span>
+                  </div>
+                  <div class="provider-tags">
+                    <span class="tag">AC Repair</span>
+                    <span class="tag">Wiring</span>
+                    <span class="tag">Appliances</span>
+                  </div>
+                </div>
+              </div>
+              <div class="provider-actions">
+                <button class="action-button">View Profile</button>
+                <div class="divider"></div>
+                <button class="action-button">Contact</button>
+                <div class="divider"></div>
+                <button class="action-button book-now">Book Now</button>
+              </div>
+            </div>
+            
+            <!-- Provider Card 3 -->
+            <div class="provider-card">
+              <div class="provider-info">
+                <div class="provider-image-container">
+                  <img src="../images/provider-8.jpg" alt="Deepak Verma" class="provider-image">
+                  <div class="status-indicator soon">⏱</div>
+                </div>
+                <div class="provider-details">
+                  <div class="provider-header">
+                    <div>
+                      <h3>Deepak Verma</h3>
+                      <p class="provider-category">Electrician</p>
+                    </div>
+                    <div class="rating">
+                      <i class="fas fa-star"></i>
+                      <span>4.5</span>
+                    </div>
+                  </div>
+                  <div class="provider-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Ballia, 3.8 km</span>
+                  </div>
+                  <div class="provider-rate">
+                    <i class="fas fa-clock"></i>
+                    <span>₹480/hour</span>
+                  </div>
+                  <div class="provider-tags">
+                    <span class="tag">Wiring</span>
+                    <span class="tag">Installation</span>
+                    <span class="tag">Maintenance</span>
+                  </div>
+                </div>
+              </div>
+              <div class="provider-actions">
+                <button class="action-button">View Profile</button>
+                <div class="divider"></div>
+                <button class="action-button">Contact</button>
+                <div class="divider"></div>
+                <button class="action-button book-now">Book Now</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Pagination -->
+          <div class="pagination">
+            <button class="pagination-button" disabled>Previous</button>
+            <button class="pagination-button active">1</button>
+            <button class="pagination-button">2</button>
+            <button class="pagination-button">3</button>
+            <button class="pagination-button">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer (Same as index.html) -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Company Info -->
+        <div class="footer-column">
+          <h3>LocalLink</h3>
+          <p>Connecting you with trusted local service providers in Sikandarpur, Ballia and beyond.</p>
+          <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="../categories.html">Service Categories</a></li>
+            <li><a href="../providers.html">Find Providers</a></li>
+            <li><a href="../register.html">Register as Provider</a></li>
+            <li><a href="../how-it-works.html">How It Works</a></li>
+            <li><a href="../pricing.html">Pricing Plans</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div class="footer-column">
+          <h3>Support</h3>
+          <ul class="footer-links">
+            <li><a href="../help.html">Help Center</a></li>
+            <li><a href="../faq.html">FAQs</a></li>
+            <li><a href="../contact.html">Contact Us</a></li>
+            <li><a href="../terms.html">Terms of Service</a></li>
+            <li><a href="../privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-column">
+          <h3>Contact Us</h3>
+          <ul class="contact-info">
+            <li>
+              <i class="fas fa-envelope"></i>
+              <span>support@locallink.com</span>
+            </li>
+            <li>
+              <i class="fas fa-phone"></i>
+              <span>+91 9876543210</span>
+            </li>
+            <li>
+              <address>
+                LocalLink Office,<br>
+                Main Road, Sikandarpur,<br>
+                Ballia, Uttar Pradesh
+              </address>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© <span id="current-year"></span> LocalLink. All rights reserved.</p>
+        <p>Available in: Sikandarpur, Ballia, and surrounding areas</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

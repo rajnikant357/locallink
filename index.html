@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LocalLink - Find Local Service Providers</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+          <span>LocalLink</span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav">
+          <a href="categories.html" class="nav-link">Categories</a>
+          <a href="providers.html" class="nav-link">Providers</a>
+          <a href="how-it-works.html" class="nav-link">How It Works</a>
+          <a href="about.html" class="nav-link">About</a>
+        </nav>
+
+        <!-- Desktop Actions -->
+        <div class="desktop-actions">
+          <!-- Language Selector -->
+          <div class="dropdown">
+            <button class="icon-button" id="language-button">
+              <i class="fas fa-globe"></i>
+            </button>
+            <div class="dropdown-content" id="language-dropdown">
+              <a href="#">English</a>
+              <a href="#">हिन्दी</a>
+              <a href="#">भोजपुरी</a>
+            </div>
+          </div>
+
+          <!-- Notifications -->
+          <button class="icon-button">
+            <i class="fas fa-bell"></i>
+          </button>
+
+          <!-- User Menu -->
+          <div class="dropdown">
+            <button class="icon-button" id="user-button">
+              <i class="fas fa-user"></i>
+            </button>
+            <div class="dropdown-content" id="user-dropdown">
+              <a href="#">Profile</a>
+              <a href="#">My Bookings</a>
+              <a href="#">Settings</a>
+              <a href="#">Sign Out</a>
+            </div>
+          </div>
+
+          <button class="btn btn-small">Sign In</button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="mobile-menu-button">
+          <button id="mobile-menu-toggle">
+            <i class="fas fa-bars" id="menu-icon"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="container">
+        <a href="categories.html" class="mobile-menu-item">Categories</a>
+        <a href="providers.html" class="mobile-menu-item">Providers</a>
+        <a href="how-it-works.html" class="mobile-menu-item">How It Works</a>
+        <a href="about.html" class="mobile-menu-item">About</a>
+        <div class="mobile-menu-footer">
+          <button class="btn btn-full">Sign In</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Find Local Service Providers Instantly</h1>
+          <p>Connect with verified electricians, carpenters, tailors, and more in your area</p>
+
+          <div class="search-box">
+            <div class="search-inputs">
+              <div class="search-input-wrapper">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="What service do you need?">
+              </div>
+              <div class="search-input-wrapper">
+                <i class="fas fa-map-marker-alt"></i>
+                <input type="text" placeholder="Your location" value="Sikandarpur, Ballia">
+              </div>
+              <button class="btn search-btn">Search</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Popular Categories -->
+    <section class="categories">
+      <div class="container">
+        <div class="section-header">
+          <h2>Popular Categories</h2>
+          <a href="categories.html" class="view-all">
+            View all <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+
+        <div class="categories-grid">
+          <a href="categories/electrician.html" class="category-card">
+            <div class="category-icon">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h3>Electrician</h3>
+            <p>48 providers</p>
+          </a>
+          <a href="categories/plumber.html" class="category-card">
+            <div class="category-icon">
+              <i class="fas fa-faucet"></i>
+            </div>
+            <h3>Plumber</h3>
+            <p>36 providers</p>
+          </a>
+          <a href="categories/carpenter.html" class="category-card">
+            <div class="category-icon">
+              <i class="fas fa-hammer"></i>
+            </div>
+            <h3>Carpenter</h3>
+            <p>29 providers</p>
+          </a>
+          <a href="categories/painter.html" class="category-card">
+            <div class="category-icon">
+              <i class="fas fa-paint-roller"></i>
+            </div>
+            <h3>Painter</h3>
+            <p>24 providers</p>
+          </a>
+          <a href="categories/cleaner.html" class="category-card">
+            <div class="category-icon">
+              <i class="fas fa-broom"></i>
+            </div>
+            <h3>Cleaner</h3>
+            <p>42 providers</p>
+          </a>
+          <a href="categories/tailor.html" class="category-card">
+            <div class="category-icon">
+              <i class="fas fa-tshirt"></i>
+            </div>
+            <h3>Tailor</h3>
+            <p>18 providers</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Available Now Section -->
+    <section class="available-now">
+      <div class="container">
+        <div class="section-header">
+          <h2>Available Right Now</h2>
+          <a href="available.html" class="view-all">
+            View all <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+
+        <div class="tabs">
+          <div class="tabs-list">
+            <button class="tab-button active" data-tab="all">All</button>
+            <button class="tab-button" data-tab="electrician">Electricians</button>
+            <button class="tab-button" data-tab="plumber">Plumbers</button>
+            <button class="tab-button" data-tab="carpenter">Carpenters</button>
+            <button class="tab-button" data-tab="painter">Painters</button>
+          </div>
+
+          <div class="tab-content active" id="tab-all">
+            <div class="providers-grid">
+              <!-- Provider Card 1 -->
+              <div class="provider-card">
+                <div class="provider-info">
+                  <div class="provider-image-container">
+                    <img src="images/provider-1.jpg" alt="Rajesh Kumar" class="provider-image">
+                    <div class="status-indicator available">✓</div>
+                  </div>
+                  <div class="provider-details">
+                    <div class="provider-header">
+                      <div>
+                        <h3>Rajesh Kumar</h3>
+                        <p class="provider-category">Electrician</p>
+                      </div>
+                      <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <span>4.8</span>
+                      </div>
+                    </div>
+                    <div class="provider-location">
+                      <i class="fas fa-map-marker-alt"></i>
+                      <span>Sikandarpur, 2.3 km</span>
+                    </div>
+                    <div class="provider-rate">
+                      <i class="fas fa-clock"></i>
+                      <span>₹500/hour</span>
+                    </div>
+                    <div class="provider-tags">
+                      <span class="tag">Wiring</span>
+                      <span class="tag">Repairs</span>
+                      <span class="tag">Installation</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="provider-actions">
+                  <button class="action-button">View Profile</button>
+                  <div class="divider"></div>
+                  <button class="action-button">Contact</button>
+                  <div class="divider"></div>
+                  <button class="action-button book-now">Book Now</button>
+                </div>
+              </div>
+
+              <!-- Provider Card 2 -->
+              <div class="provider-card">
+                <div class="provider-info">
+                  <div class="provider-image-container">
+                    <img src="images/provider-2.jpg" alt="Sunil Yadav" class="provider-image">
+                    <div class="status-indicator busy">✗</div>
+                  </div>
+                  <div class="provider-details">
+                    <div class="provider-header">
+                      <div>
+                        <h3>Sunil Yadav</h3>
+                        <p class="provider-category">Plumber</p>
+                      </div>
+                      <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <span>4.6</span>
+                      </div>
+                    </div>
+                    <div class="provider-location">
+                      <i class="fas fa-map-marker-alt"></i>
+                      <span>Ballia, 3.1 km</span>
+                    </div>
+                    <div class="provider-rate">
+                      <i class="fas fa-clock"></i>
+                      <span>₹450/hour</span>
+                    </div>
+                    <div class="provider-tags">
+                      <span class="tag">Pipe Fitting</span>
+                      <span class="tag">Leakage</span>
+                      <span class="tag">Bathroom</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="provider-actions">
+                  <button class="action-button">View Profile</button>
+                  <div class="divider"></div>
+                  <button class="action-button">Contact</button>
+                  <div class="divider"></div>
+                  <button class="action-button book-now">Book Now</button>
+                </div>
+              </div>
+
+              <!-- Provider Card 3 -->
+              <div class="provider-card">
+                <div class="provider-info">
+                  <div class="provider-image-container">
+                    <img src="images/provider-3.jpg" alt="Amit Singh" class="provider-image">
+                    <div class="status-indicator available">✓</div>
+                  </div>
+                  <div class="provider-details">
+                    <div class="provider-header">
+                      <div>
+                        <h3>Amit Singh</h3>
+                        <p class="provider-category">Carpenter</p>
+                      </div>
+                      <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <span>4.9</span>
+                      </div>
+                    </div>
+                    <div class="provider-location">
+                      <i class="fas fa-map-marker-alt"></i>
+                      <span>Sikandarpur, 1.8 km</span>
+                    </div>
+                    <div class="provider-rate">
+                      <i class="fas fa-clock"></i>
+                      <span>₹600/hour</span>
+                    </div>
+                    <div class="provider-tags">
+                      <span class="tag">Furniture</span>
+                      <span class="tag">Repair</span>
+                      <span class="tag">Custom Work</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="provider-actions">
+                  <button class="action-button">View Profile</button>
+                  <div class="divider"></div>
+                  <button class="action-button">Contact</button>
+                  <div class="divider"></div>
+                  <button class="action-button book-now">Book Now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-content" id="tab-electrician">
+            <div class="providers-grid">
+              <!-- Electrician Provider Card -->
+              <div class="provider-card">
+                <div class="provider-info">
+                  <div class="provider-image-container">
+                    <img src="images/provider-1.jpg" alt="Rajesh Kumar" class="provider-image">
+                    <div class="status-indicator available">✓</div>
+                  </div>
+                  <div class="provider-details">
+                    <div class="provider-header">
+                      <div>
+                        <h3>Rajesh Kumar</h3>
+                        <p class="provider-category">Electrician</p>
+                      </div>
+                      <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <span>4.8</span>
+                      </div>
+                    </div>
+                    <div class="provider-location">
+                      <i class="fas fa-map-marker-alt"></i>
+                      <span>Sikandarpur, 2.3 km</span>
+                    </div>
+                    <div class="provider-rate">
+                      <i class="fas fa-clock"></i>
+                      <span>₹500/hour</span>
+                    </div>
+                    <div class="provider-tags">
+                      <span class="tag">Wiring</span>
+                      <span class="tag">Repairs</span>
+                      <span class="tag">Installation</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="provider-actions">
+                  <button class="action-button">View Profile</button>
+                  <div class="divider"></div>
+                  <button class="action-button">Contact</button>
+                  <div class="divider"></div>
+                  <button class="action-button book-now">Book Now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-content" id="tab-plumber">
+            <div class="providers-grid">
+              <!-- Plumber Provider Card -->
+              <div class="provider-card">
+                <div class="provider-info">
+                  <div class="provider-image-container">
+                    <img src="images/provider-2.jpg" alt="Sunil Yadav" class="provider-image">
+                    <div class="status-indicator busy">✗</div>
+                  </div>
+                  <div class="provider-details">
+                    <div class="provider-header">
+                      <div>
+                        <h3>Sunil Yadav</h3>
+                        <p class="provider-category">Plumber</p>
+                      </div>
+                      <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <span>4.6</span>
+                      </div>
+                    </div>
+                    <div class="provider-location">
+                      <i class="fas fa-map-marker-alt"></i>
+                      <span>Ballia, 3.1 km</span>
+                    </div>
+                    <div class="provider-rate">
+                      <i class="fas fa-clock"></i>
+                      <span>₹450/hour</span>
+                    </div>
+                    <div class="provider-tags">
+                      <span class="tag">Pipe Fitting</span>
+                      <span class="tag">Leakage</span>
+                      <span class="tag">Bathroom</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="provider-actions">
+                  <button class="action-button">View Profile</button>
+                  <div class="divider"></div>
+                  <button class="action-button">Contact</button>
+                  <div class="divider"></div>
+                  <button class="action-button book-now">Book Now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+      <div class="container">
+        <h2 class="section-title">How LocalLink Works</h2>
+
+        <div class="steps-grid">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>Search Services</h3>
+            <p>Find the service you need by category or search directly</p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>Choose Provider</h3>
+            <p>Compare ratings, prices, and availability to select the best match</p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>Book & Connect</h3>
+            <p>Book instantly or schedule for later and connect directly</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Join as Provider CTA -->
+    <section class="join-provider">
+      <div class="container">
+        <h2>Are You a Service Provider?</h2>
+        <p>Join LocalLink to find more clients, manage your schedule, and grow your business</p>
+        <div class="cta-buttons">
+          <button class="btn btn-secondary">Learn More</button>
+          <button class="btn btn-outline">Register Now</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Company Info -->
+        <div class="footer-column">
+          <h3>LocalLink</h3>
+          <p>Connecting you with trusted local service providers in Sikandarpur, Ballia and beyond.</p>
+          <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="categories.html">Service Categories</a></li>
+            <li><a href="providers.html">Find Providers</a></li>
+            <li><a href="register.html">Register as Provider</a></li>
+            <li><a href="how-it-works.html">How It Works</a></li>
+            <li><a href="pricing.html">Pricing Plans</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div class="footer-column">
+          <h3>Support</h3>
+          <ul class="footer-links">
+            <li><a href="help.html">Help Center</a></li>
+            <li><a href="faq.html">FAQs</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-column">
+          <h3>Contact Us</h3>
+          <ul class="contact-info">
+            <li>
+              <i class="fas fa-envelope"></i>
+              <span>support@locallink.com</span>
+            </li>
+            <li>
+              <i class="fas fa-phone"></i>
+              <span>+91 9876543210</span>
+            </li>
+            <li>
+              <address>
+                LocalLink Office,<br>
+                Main Road, Sikandarpur,<br>
+                Ballia, Uttar Pradesh
+              </address>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© <span id="current-year"></span> LocalLink. All rights reserved.</p>
+        <p>Available in: Sikandarpur, Ballia, and surrounding areas</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
